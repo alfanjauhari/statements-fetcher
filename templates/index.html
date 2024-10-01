@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Statements Fetcher</title>
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/dist/output.css')}}"
+    />
+
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  </head>
+  <body class="bg-background text-foreground">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-6 text-center">
+        Personal Financial Statements Fetcher
+      </h1>
+      <form hx-post="/" hx-target="#result" class="max-w-md mx-auto space-y-4">
+        <div class="space-y-2">
+          <label
+            for="symbol"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >Stock Symbol:</label
+          >
+          <input
+            type="text"
+            id="symbol"
+            name="symbol"
+            required
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          />
+        </div>
+        <div class="space-y-2">
+          <label
+            for="statement_type"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >Statement Type:</label
+          >
+          <select
+            id="statement_type"
+            name="statement_type"
+            required
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <option value="income">Income Statement</option>
+            <option value="balance">Balance Sheet</option>
+            <option value="cash">Cash Flow Statement</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label
+            for="period"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >Period:</label
+          >
+          <select
+            id="period"
+            name="period"
+            required
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <option value="annual">Annual</option>
+            <option value="quarterly">Quarterly</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+        >
+          Fetch Statement
+        </button>
+      </form>
+      <div id="result" class="mt-8"></div>
+    </div>
+  </body>
+</html>
